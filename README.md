@@ -20,7 +20,8 @@ func main() {
 	l.Infoln("some text")
 }
 ```
-It will output like this: `Wow [INFO]    2019/05/07 21:53:36 f.go:9: some text`
+It will output like this: `Wow [INFO] 2019/05/07 21:53:36 main.go:9:
+some text`
 
 #### Roadmap
 1. Support colored output.
