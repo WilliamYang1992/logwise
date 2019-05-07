@@ -1,2 +1,2 @@
 # logwise
-golang log 工具
+Go smart log 工具
