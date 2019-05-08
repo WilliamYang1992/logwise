@@ -3,6 +3,7 @@ package logwise
 import (
 	"bytes"
 	"strings"
+	"sync"
 	"testing"
 )
 
@@ -64,5 +65,50 @@ func TestLogger(t *testing.T) {
 	l.Info("some text")
 	if strings.Contains(buf.String(), "some text") {
 		t.Error("Logging beyond log level!")
+	}
+}
+
+func TestConcurrentSafe(t *testing.T) {
+	l := Default()
+	var buf bytes.Buffer
+	l.SetOutput(&buf)
+
+	var wg sync.WaitGroup
+	wg.Add(3)
+	go func() {
+		for i := 0; i <= 100; i++ {
+			l.Debugln("a")
+		}
+		wg.Done()
+	}()
+	go func() {
+		for i := 0; i <= 100; i++ {
+			l.Infoln("b")
+		}
+		wg.Done()
+	}()
+	go func() {
+		for i := 0; i <= 100; i++ {
+			l.Errorln("c")
+		}
+		wg.Done()
+	}()
+
+	wg.Wait()
+
+	for _, line := range strings.Split(buf.String(), "\n") {
+		if strings.Contains(line, "a") {
+			if !strings.Contains(line, "DEBUG") {
+				t.Error("Not concurrent safe!")
+			}
+		} else if strings.Contains(line, "b") {
+			if !strings.Contains(line, "INFO") {
+				t.Error("Not concurrent safe!")
+			}
+		} else if strings.Contains(line, "c") {
+			if !strings.Contains(line, "ERROR") {
+				t.Error("Not concurrent safe!")
+			}
+		}
 	}
 }

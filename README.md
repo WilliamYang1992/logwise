@@ -5,7 +5,8 @@ use.
 #### Feature
 1. Easy to use.
 2. Support log level filtering.
-3. No performance loss.
+3. Nearly no performance loss.
+4. Concurrent safe.
 
 #### Usage
 ```go
