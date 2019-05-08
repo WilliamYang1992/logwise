@@ -70,24 +70,40 @@ func (l LogLevel) String() string {
 }
 
 type Logger struct {
-	Prefix string
-	Out    io.Writer
+	prefix string
+	out    io.Writer
 	logger *log.Logger
 }
 
 func (l Logger) String() string {
-	return fmt.Sprintf("Logger<Prefix: %s, Out: %s>", l.Prefix, l.Out)
+	return fmt.Sprintf("Logger<Prefix: %s, Out: %s>", l.prefix, l.out)
+}
+
+func (l Logger) Prefix() string {
+	return l.prefix
+}
+
+func (l *Logger) SetPrefix(prefix string) {
+	l.prefix = prefix
+}
+
+func (l Logger) Output() io.Writer {
+	return l.out
+}
+
+func (l *Logger) SetOutput(out io.Writer) {
+	l.out = out
 }
 
 // 按照不同的 loglevel 改变 logger 属性
 func (l *Logger) dress(lv LogLevel) {
-	l.logger.SetPrefix(GetPrefix(lv, l.Prefix))
-	if l.Out == DefaultOutput {
+	l.logger.SetPrefix(GetPrefix(lv, l.prefix))
+	if l.out == DefaultOutput {
 		if lv != SystemLevel && lv >= ErrorLevel {
 			l.logger.SetOutput(os.Stderr)
 		}
 	} else {
-		l.logger.SetOutput(l.Out)
+		l.logger.SetOutput(l.out)
 	}
 }
 
@@ -220,8 +236,8 @@ func (l Logger) Systemf(format string, v ...interface{}) {
 // New logger
 func New(out io.Writer, prefix string, flag int) *Logger {
 	logger := new(Logger)
-	logger.Out = out
-	logger.Prefix = prefix
+	logger.out = out
+	logger.prefix = prefix
 	logger.logger = log.New(out, "", flag)
 	return logger
 }

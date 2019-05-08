@@ -8,10 +8,10 @@ import (
 
 func TestLogger(t *testing.T) {
 	l := Default()
-	l.Prefix = "wow"
+	l.SetPrefix("wow")
 	var buf bytes.Buffer
 
-	l.Out = &buf
+	l.SetOutput(&buf)
 	l.Println("some text")
 	if !strings.Contains(buf.String(), "wow") {
 		t.Errorf("Prefix doesn't in it!")
