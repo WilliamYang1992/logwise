@@ -292,19 +292,19 @@ func GetPrefix(level LogLevel, prefix string) string {
 	}
 	switch level {
 	case TraceLevel:
-		prefix += "[TRACE]   "
+		prefix += "[TRACE]  "
 	case DebugLevel:
-		prefix += "[DEBUG]   "
+		prefix += "[DEBUG]  "
 	case InfoLevel:
-		prefix += "[INFO]    "
+		prefix += "[INFO]   "
 	case WarningLevel:
-		prefix += "[WARN]    "
+		prefix += "[WARN]   "
 	case ErrorLevel:
-		prefix += "[ERROR]   "
+		prefix += "[ERROR]  "
 	case FatalLevel:
-		prefix += "[FATAL]   "
+		prefix += "[FATAL]  "
 	case SystemLevel:
-		prefix += "[SYSTEM]  "
+		prefix += "[SYS]    "
 	}
 	return prefix
 }
