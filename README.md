@@ -28,4 +28,4 @@ some text`
 1. Support colored output.
 
 #### License
-MIT License
+**MIT License**
