@@ -1,5 +1,8 @@
 # CHANGELOG
 
+#### V0.2.2
+* Add benchmark
+
 #### V0.2.1
 * Adjust space in log message.
 
