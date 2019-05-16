@@ -2,9 +2,16 @@ package logwise
 
 import (
 	"bytes"
+	"log"
+	"os"
 	"strings"
 	"sync"
 	"testing"
+)
+
+var (
+	StdLogger     = log.New(os.Stdout, "", 0)
+	LogwiseLogger = log.New(os.Stdout, "", 0)
 )
 
 func TestLogger(t *testing.T) {
@@ -56,7 +63,7 @@ func TestLogger(t *testing.T) {
 
 	buf.Reset()
 	l.System("some text")
-	if !strings.Contains(buf.String(), "SYSTEM") {
+	if !strings.Contains(buf.String(), "SYS") {
 		t.Error("Not a \"SYSTEM\" log!")
 	}
 
@@ -111,4 +118,12 @@ func TestConcurrentSafe(t *testing.T) {
 			}
 		}
 	}
+}
+
+func BenchmarkStdLogger(b *testing.B) {
+	StdLogger.Println("test")
+}
+
+func BenchmarkLogwiseLogger(b *testing.B) {
+	LogwiseLogger.Println("test")
 }
