@@ -1,5 +1,8 @@
 # CHANGELOG
 
+#### V0.2.3
+* Fix output not changing by error level.
+
 #### V0.2.2
 * Add benchmark
 

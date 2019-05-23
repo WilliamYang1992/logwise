@@ -103,6 +103,8 @@ func (l *Logger) dress(lv LogLevel) {
 	if l.out == DefaultOutput {
 		if lv != SystemLevel && lv >= ErrorLevel {
 			l.logger.SetOutput(os.Stderr)
+		} else {
+			l.logger.SetOutput(l.out)
 		}
 	} else {
 		l.logger.SetOutput(l.out)
