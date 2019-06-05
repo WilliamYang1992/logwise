@@ -2,6 +2,7 @@ package logwise
 
 import (
 	"bytes"
+	"github.com/logwise/loglevel"
 	"log"
 	"os"
 	"strings"
@@ -68,7 +69,7 @@ func TestLogger(t *testing.T) {
 	}
 
 	buf.Reset()
-	SetLogLevel(ErrorLevel)
+	l.SetLogLevel(loglevel.Error)
 	l.Info("some text")
 	if strings.Contains(buf.String(), "some text") {
 		t.Error("Logging beyond log level!")

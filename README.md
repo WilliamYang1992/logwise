@@ -12,16 +12,19 @@ use.
 ```go
 package main
 
-import "github.com/WilliamYang1992/logwise"
+import (
+	"github.com/WilliamYang1992/logwise"
+	"github.com/WilliamYang1992/logwise/loglevel"
+)
 
 func main() {
-	logwise.SetLogLevel(logwise.InfoLevel)
 	l := logwise.Default()
-	l.Prefix = "Wow"
+	l.SetLogLevel(loglevel.Info)
+	l.SetPrefix("Wow")
 	l.Infoln("some text")
 }
 ```
-It will output like this: `Wow [INFO] 2019/05/07 21:53:36 main.go:9:
+It will output like this: `Wow [INFO] 2019/05/07 21:53:36 main.go:12:
 some text`
 
 #### Roadmap

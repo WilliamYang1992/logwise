@@ -1,5 +1,10 @@
 # CHANGELOG
 
+#### V0.3
+* No longer use global log level.
+* Optimized codes.
+* Add `NotSet` log level
+
 #### V0.2.3
 * Fix output not changing by error level.
 
