@@ -1,5 +1,8 @@
 # CHANGELOG
 
+#### V0.3.1
+* Fix wrong import path. 
+
 #### V0.3
 * No longer use global log level.
 * Optimized codes.

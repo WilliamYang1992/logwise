@@ -26,7 +26,7 @@ package logwise
 
 import (
 	"fmt"
-	"github.com/logwise/loglevel"
+	"github.com/WilliamYang1992/logwise/loglevel"
 	"io"
 	"log"
 	"os"
